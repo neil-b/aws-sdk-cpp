@@ -58,7 +58,9 @@ namespace Aws
                     m_failure = true;
                 }
 
+                std::unique_lock<std::mutex> locker(m_mutex);
                 size_t read = fread(buffer, sizeof(unsigned char), bufferSize, fp);
+                locker.unlock();
 
                 if(read != bufferSize)
                 {

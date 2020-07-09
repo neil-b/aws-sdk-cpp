@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include <mutex>
+
 #include <aws/core/utils/crypto/Hash.h>
 #include <aws/core/utils/crypto/HMAC.h>
 #include <aws/core/utils/crypto/SecureRandom.h>
@@ -49,6 +51,7 @@ namespace Aws
 
             private:
                 FILE* fp;
+                std::mutex m_mutex;
             };
 
 
